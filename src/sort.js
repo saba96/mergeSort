@@ -1,5 +1,4 @@
 
-//let $cache= $('<div></div>');
 let cache = [];
 let index = 0;
 

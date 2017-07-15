@@ -1,11 +1,12 @@
 .number{
 background-color: blue;
  width: 250px;
- height: 120px;
+ height: 80px;
+ line-height: 80px;
  margin: 20px;
  display: inline-block;
  text-align: center;
- padding-top: 20px;
+ font-size: xx-large;
 
 }
 

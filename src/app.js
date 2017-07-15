@@ -10,8 +10,8 @@ function getRandomColor() {
   return color;
 }
 
-var $mainDiv= $('<div></div>');
-$mainDiv.attr('id', "main");
+// var $mainDiv= $('<div></div>');
+// $mainDiv.attr('id', "main");
 _.each(arr, function(id){
 	var $div1= $('<div></div>');
 	$div1.attr('id', id).addClass("number").text(id).css("background-color", getRandomColor());
@@ -33,19 +33,47 @@ function unique(arr) {
 arr = mergeSort(arr);
 cache = unique(cache); 
 cache.shift();
-_.each(cache, function(step){
-	let $div2= $('<div></div>');
+
+var oddCount = 0;
+var evenCount = 0;
+var $oddDiv = $('<div></div>');
+var $evenDiv = $('<div></div>');
+for (var i = 0; i<cache.length; i++) {
+	if(oddCount === 2 ){
+		$('body').append($oddDiv);
+		$oddDiv = $('<div></div>');
+		oddCount = 0;
+	}
+	if(evenCount === 2){
+		$('body').append($evenDiv);
+		$evenDiv = $('<div></div>');
+		evenCount = 0;
+	}
 	let color = getRandomColor();
-	_.each(step, function(id){
-		let $div3= $('<div></div>');
-		$div3.addClass("number").text(id).css("background-color", color);;
-		$div2.append($div3);
-	});
-	$('body').append($div2);
-	
+	if(i%2===1){
+		for (var j = 0; j<cache[i].length; j++) {
+			var $div3= $('<div></div>');
+			$div3.addClass("number").text(cache[i][j]).css("background-color", color);;
+			$oddDiv.append($div3);	
+		}
+		
+		oddCount++;
+	}
+	else{
+		for (var j = 0; j<cache[i].length; j++) {
+			var $div3= $('<div></div>');
+			$div3.addClass("number").text(cache[i][j]).css("background-color", color);;
+			$evenDiv.append($div3);	
+		}
+		
+		evenCount++;
+	}
+}
+
+
+let finalColor = getRandomColor();
+_.each(arr, function(id){
+	var $sorted= $('<div></div>');
+	$sorted.attr('id', id).addClass("number").text(id).css("background-color", finalColor);
+	$('body').append($sorted);
 });
-
-//$('body').append($mainDiv);
-	//console.log(step);
-
-//console.log(arr);
